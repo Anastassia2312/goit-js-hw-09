@@ -1,0 +1,2 @@
+import"./assets/styles-0044c08f.js";const t=document.querySelector(".feedback-form"),c="feedback-form-state",a={};t.addEventListener("input",e=>{new FormData(t).forEach((o,n)=>{a[n]=o}),localStorage.setItem(c,JSON.stringify(a))});try{const e=JSON.parse(localStorage.getItem(c));Array.from(t.elements).forEach(r=>{const o=e[r.name];o&&(r.value=o)})}catch{console.error("PARSE ERROR")}t.addEventListener("submit",e=>{e.preventDefault(),localStorage.removeItem(c),t.reset(),console.log(a)});
+//# sourceMappingURL=commonHelpers2.js.map
