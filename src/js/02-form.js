@@ -28,9 +28,11 @@ try {
   const initialFormData = JSON.parse(localStorage.getItem(STORAGE_DATA_KEY));
   Array.from(feedbackForm.elements).forEach(element => {
     const storageValue = initialFormData[element.name];
-    if (initialFormData === null) return;
-    else {
-      element.value = storageValue;
+    if (initialFormData) {
+      if (initialFormData === null) return;
+      else {
+        element.value = storageValue;
+      }
     }
   });
 } catch (e) {
