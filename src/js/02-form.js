@@ -26,15 +26,13 @@ feedbackForm.addEventListener('submit', event => {
 
 try {
   const initialFormData = JSON.parse(localStorage.getItem(STORAGE_DATA_KEY));
-  Array.from(feedbackForm.elements).forEach(element => {
-    const storageValue = initialFormData[element.name];
-    if (initialFormData) {
-      if (initialFormData === null) return;
-      else {
-        element.value = storageValue;
-      }
-    }
-  });
+  if (initialFormData === Object) {
+    Array.from(feedbackForm.elements).forEach(element => {
+      const storageValue = initialFormData[element.name];
+
+      element.value = storageValue;
+    });
+  }
 } catch (e) {
   console.error('PARSE ERROR');
 }
