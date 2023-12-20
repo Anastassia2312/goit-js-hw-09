@@ -84,7 +84,6 @@ const galleryItem = images.reduce(
 gallery.insertAdjacentHTML('beforeend', galleryItem);
 
 const lightbox = new SimpleLightbox('.gallery a', {
-  captionDelay: '250ms',
+  captionDelay: 250,
   captionsData: 'alt',
 });
-gallery.open();

@@ -7,31 +7,32 @@
 об'єкт з полями email, message та їхніми поточними значеннями.*/
 const feedbackForm = document.querySelector('.feedback-form');
 const STORAGE_DATA_KEY = 'feedback-form-state';
-const formObject = {};
+
 feedbackForm.addEventListener('input', event => {
   const formData = new FormData(feedbackForm);
-
+  const formObject = {};
   formData.forEach((value, key) => {
-    formObject[key] = value;
+    formObject[key] = value.trim();
   });
   localStorage.setItem(STORAGE_DATA_KEY, JSON.stringify(formObject));
+});
+
+feedbackForm.addEventListener('submit', event => {
+  event.preventDefault();
+  localStorage.removeItem(STORAGE_DATA_KEY);
+  feedbackForm.reset();
+  console.log(initialFormData);
 });
 
 try {
   const initialFormData = JSON.parse(localStorage.getItem(STORAGE_DATA_KEY));
   Array.from(feedbackForm.elements).forEach(element => {
     const storageValue = initialFormData[element.name];
-    if (storageValue) {
+    if (initialFormData === null) return;
+    else {
       element.value = storageValue;
     }
   });
 } catch (e) {
   console.error('PARSE ERROR');
 }
-
-feedbackForm.addEventListener('submit', event => {
-  event.preventDefault();
-  localStorage.removeItem(STORAGE_DATA_KEY);
-  feedbackForm.reset();
-  console.log(formObject);
-});
