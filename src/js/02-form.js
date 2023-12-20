@@ -21,7 +21,7 @@ feedbackForm.addEventListener('submit', event => {
   event.preventDefault();
   localStorage.removeItem(STORAGE_DATA_KEY);
   feedbackForm.reset();
-  console.log(initialFormData);
+  console.log(localStorage.getItem(STORAGE_DATA_KEY));
 });
 
 try {
