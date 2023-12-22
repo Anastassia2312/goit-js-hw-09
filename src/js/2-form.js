@@ -18,21 +18,27 @@ feedbackForm.addEventListener('input', event => {
 });
 
 feedbackForm.addEventListener('submit', event => {
+  const emailValue = feedbackForm.elements.email.value;
+  const messageValue = feedbackForm.elements.message.value;
   event.preventDefault();
-  localStorage.removeItem(STORAGE_DATA_KEY);
-  feedbackForm.reset();
-  console.log(localStorage.getItem(STORAGE_DATA_KEY));
+  if (!emailValue || !messageValue) {
+    alert('All fields must be filled in');
+  } else {
+    const storageInfo = JSON.parse(localStorage.getItem(STORAGE_DATA_KEY));
+    localStorage.removeItem(STORAGE_DATA_KEY);
+    feedbackForm.reset();
+    console.log(storageInfo);
+  }
 });
 
 try {
   const initialFormData = JSON.parse(localStorage.getItem(STORAGE_DATA_KEY));
-  if (initialFormData === Object) {
+  if (typeof initialFormData === 'object' && initialFormData !== null) {
     Array.from(feedbackForm.elements).forEach(element => {
       const storageValue = initialFormData[element.name];
-
       element.value = storageValue;
     });
   }
 } catch (e) {
-  console.error('PARSE ERROR');
+  console.error('DATA FROM STORAGE IS NOT AN OBJECT OR THERE IS NO VALUE');
 }

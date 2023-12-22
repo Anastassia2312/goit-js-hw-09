@@ -71,7 +71,7 @@ const galleryItem = images.reduce(
   (html, image) =>
     html +
     `<li class="gallery-item">
-      <a class="gallery-link" href="${image.original}"">
+      <a class="gallery-link" href="${image.original}">
         <img
           class="gallery-image"
           src="${image.preview}"
