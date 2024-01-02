@@ -18,6 +18,8 @@ feedbackForm.addEventListener('input', event => {
 });
 
 feedbackForm.addEventListener('submit', event => {
+  //const emailValue = event.currentTarget.email.value;
+  //const messageValue = event.currentTarget.message.value;
   const emailValue = feedbackForm.elements.email.value;
   const messageValue = feedbackForm.elements.message.value;
   event.preventDefault();
